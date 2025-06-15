@@ -1,7 +1,7 @@
-from constants import abs_project_path
+from Advanced.constants import abs_project_path
 
 # # using relative path
-# import os
+import os
 
 # path = os.path.join("..", "lab_files", "text.txt")
 
