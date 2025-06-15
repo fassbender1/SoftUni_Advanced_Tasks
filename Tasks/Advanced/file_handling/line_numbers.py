@@ -1,3 +1,4 @@
+from string import punctuation
 
 with (open("text.txt", "r") as input_file, open("output.txt", 'w') as output_file):
     result = []
@@ -8,7 +9,7 @@ with (open("text.txt", "r") as input_file, open("output.txt", 'w') as output_fil
         for ch in line:
             if ch.isalpha():
                 letters_counter += 1
-            else:
+            elif ch in punctuation: # elif ch not in [" ", "\n"]
                 symbol_counter += 1
         result.append(f"Line {row + 1}: {line.strip()} ({letters_counter})({symbol_counter})")
 
