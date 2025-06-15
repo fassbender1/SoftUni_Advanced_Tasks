@@ -11,7 +11,9 @@ class MoneyIsNegativeError(Exception):
     pass
 
 legal_age = 18
-PIN, balance, age = map(int, input().split(", "))
+PIN, balance, age = input().split(", ")
+balance = int(balance)
+age = int(age)
 
 while True:
     line = input().split("#")
@@ -20,7 +22,7 @@ while True:
         break
 
     if line[0] == "Send Money":
-        money, pin_code = int(line[1]), int(line[2])
+        money, pin_code = int(line[1]), line[2]
 
         if money > balance:
             raise MoneyNotEnoughError("Insufficient funds for the requested transaction")
