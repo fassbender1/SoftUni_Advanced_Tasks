@@ -1,0 +1,13 @@
+.js
+- - - test.js
+.txt
+- - - directory_file.txt
+- - - example.txt
+- - - file_read.txt
+- - - fire_write_ex.txt
+- - - input.txt
+- - - output.txt
+- - - report.txt
+- - - report2.txt
+- - - text.txt
+- - - words.txt
