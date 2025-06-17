@@ -103,8 +103,6 @@ def is_winner(board: list[list[str]], current_sign: str) -> bool:
         return True
     return False
 
-
-
 board = [[' ', ' ', ' '] for _ in range(3)]
 
 player_one_data, player_two_data = read_player_data()
