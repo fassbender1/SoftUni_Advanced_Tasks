@@ -96,10 +96,11 @@ def is_diagonal_winner(board: list[list[str]], current_sign: str) -> bool:
     return False
 
 def is_winner(board: list[list[str]], current_sign: str) -> bool:
-    is_row = is_row_winner(board, current_sign)
-    is_col = is_col_winner(board, current_sign)
-    is_diagonal = is_diagonal_winner(board, current_sign)
-    if is_row or is_col or is_diagonal:
+    if is_row_winner(board, current_sign):
+        return True
+    if is_col_winner(board, current_sign):
+        return True
+    if is_diagonal_winner(board, current_sign):
         return True
     return False
 
