@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 
 class InvalidColumnError(Exception):
     pass
@@ -91,8 +92,37 @@ def is_player_number_on_slot(mtrx, rows, cols, player_number):
     except IndexError:
         return False
 
+def update_ui(labels, row, col, player_num):
+    player_color = "red" if player_num == 1 else "blue"
+    labels[row][col].config(bg=player_color)
+
+def reset_game(mtrx, label):
+    for r in range(len(mtrx)):
+        for c in range(len(mtrx[0])):
+            mtrx[r][c] = 0
+            label[r][c].config(bg="white")
+
 def handle_column_click(mtrx, label, col_num, player_number, counter, row_c, col_c, slots):
-    pass
+    try:
+        validate_column_choice(col_num, col_c - 1)
+        row, col = apply_player_choice(mtrx, col_num, player_number)
+        update_ui(label, row, col, player_number)
+        if has_won(mtrx, row, col, player_number):
+            messagebox.showinfo("GAME OVER!", f"The winner is player {player_number}")
+            reset_game(mtrx, label)
+            return 1, 0
+
+        counter += 1
+        if counter == row_c * col_c:
+            messagebox.showinfo("GAME OVER!", "The game is a DRAW!")
+            reset_game(mtrx, label)
+            return 1,0
+
+        return 2 if player_number == 1 else 1, counter
+    except ColumnFullError:
+        messagebox.showerror("The column is full! Please select another!")
+    return player_number, counter
+
 
 def create_user_interface(root, rows, cols, slots):
     matrix = create_matrix(rows, cols)
@@ -108,10 +138,18 @@ def create_user_interface(root, rows, cols, slots):
     }
 
     def on_click(column_num, state):
-        
+        state["player_num"], state["counter"] = handle_column_click(
+            matrix, labels, column_num, state["player_num"], state["counter"], rows, cols, slots
+        )
 
+    buttons = [tk.Button(root,
+                         text="🡇",
+                         width=6,
+                         height=1,
+                         bg="green",
+                         command=lambda col_idx=col: on_click(col_idx, game_state)
+                         ) for col in range(cols)]
 
-    buttons = [tk.Button(root, text="🡇", width=6, height=1, bg="green", command=lambda col_idx: ) for _ in range(cols)]
     for col_index, button in enumerate(buttons):
         button.grid(row=0, column=col_index)
 
