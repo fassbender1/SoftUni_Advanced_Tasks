@@ -26,10 +26,11 @@ while len(drones_made) < len(required_drones) and mechanical_parts and power_cel
             break
 
     if not is_built:
-        candidates = [(n, p) for n, p in required_drones.items() if p < activation_power and n not in drones_made]
+        candidates = [(n, p) for n, p in required_drones.items() if
+                          p < activation_power and n not in drones_made]
         if candidates:
             best = max(candidates, key=lambda x: x[1])
-            drones_made.append(best[0])
+            drones_made[best[0]] = best[1]
             reduced_cell = current_cell - 30
             if reduced_cell > 0:
                 power_cells.append(reduced_cell)
@@ -46,7 +47,7 @@ else:
     print(f"Mission Failed! Some drones were not built.")
 
 if drones_made:
-    print(f"Assembled Drones: {', '.join([str(el) for el in drones_made.keys()])}")
+    print(f"Assembled Drones: {', '.join([str(el) for el in drones_made])}")
 if mechanical_parts:
     print(f"Mechanical Parts: {', '.join(str(el) for el in reversed(mechanical_parts))}")
 if power_cells:
