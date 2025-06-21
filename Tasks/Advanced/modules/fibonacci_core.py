@@ -6,6 +6,6 @@ def create_sequence(number):
 
 def locate(seq, number):
     try:
-        return f"The number - {number} is at index {seq.index(number)}"
+        return f"The number - {number} is at index {seq.index(number)}."
     except ValueError:
-        return f"The number {number} is not in the sequence"
+        return f"The number {number} is not in the sequence."
