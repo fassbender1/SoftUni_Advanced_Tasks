@@ -29,7 +29,6 @@ def boarding_passengers(capacity, *args):
     return result
 
 
-
 print(boarding_passengers(150, (35, 'Diamond'), (55, 'Platinum'), (35, 'Gold'), (25, 'First Cruiser')))
 
 
