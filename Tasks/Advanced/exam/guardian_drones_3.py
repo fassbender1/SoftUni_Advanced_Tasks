@@ -20,7 +20,6 @@ while len(drones_made) < len(required_drones) and mechanical_parts and power_cel
 
     built = False
 
-    # Match exact power first, in defined order
     for name in required_drones:
         power = required_drones[name]
         if activation_power == power and name not in drones_made:
@@ -29,7 +28,6 @@ while len(drones_made) < len(required_drones) and mechanical_parts and power_cel
             break
 
     if not built:
-        # Try building any unmatched drone with lower power requirement
         candidates = [(n, p) for n, p in required_drones.items() if p < activation_power and n not in drones_made]
         if candidates:
             best = max(candidates, key=lambda x: x[1])
@@ -39,12 +37,10 @@ while len(drones_made) < len(required_drones) and mechanical_parts and power_cel
                 power_cells.append(reduced_cell)
             built = True
         else:
-            # Nothing can be built, reduce power cell by 1 and re-add if > 0
             reduced_cell = current_cell - 1
             if reduced_cell > 0:
                 power_cells.append(reduced_cell)
 
-# Output
 if len(drones_made) == 5:
     print("Mission Accomplished! All Guardian Drones activated!")
 else:
