@@ -1,5 +1,5 @@
 from typing import List
-from OOP.first_steps_in_OOP.pokemon_battle.project.pokemon_battle import Pokemon
+from OOP.first_steps_in_OOP.pokemon_battle.project.pokemon import Pokemon
 
 
 class Trainer:
