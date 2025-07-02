@@ -1,13 +1,12 @@
 from typing import List
-from OOP.first_steps_in_OOP.pokemon_battle.project.pokemon import Pokemon
-
+from project.pokemon import Pokemon
 
 class Trainer:
     def __init__(self, name: str):
         self.name = name
         self.pokemons: List[Pokemon] = []
 
-    def add_pokemon(self, pokemon: Pokemon):
+    def add_pokemon(self, pokemon:Pokemon):
         if pokemon in self.pokemons:
             return "This pokemon is already caught"
         self.pokemons.append(pokemon)
