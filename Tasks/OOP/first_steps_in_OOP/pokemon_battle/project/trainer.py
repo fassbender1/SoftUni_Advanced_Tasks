@@ -1,5 +1,6 @@
 from typing import List
-from pokemon_battle import Pokemon
+from OOP.first_steps_in_OOP.pokemon_battle.project.pokemon_battle import Pokemon
+
 
 class Trainer:
     def __init__(self, name: str):
