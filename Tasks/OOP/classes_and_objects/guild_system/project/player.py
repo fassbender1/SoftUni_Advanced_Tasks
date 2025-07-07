@@ -13,9 +13,9 @@ class Player:
         return f"Skill {skill_name} added to the collection of the player {self.name}"
 
     def player_info(self):
-        dictionary_string = "\n".join(f"==={skill} - {mana}" for skill, mana in self.skills)
+        dictionary_string = "\n".join(f"==={skill} - {mana}" for skill, mana in self.skills.items())
         return (f"Name: {self.name}\n"
                 f"Guild: {self.guild}\n"
                 f"HP: {self.hp}\n"
                 f"MP: {self.mp}\n"
-                f"{dictionary_string}")
+                f"{dictionary_string}\n")
