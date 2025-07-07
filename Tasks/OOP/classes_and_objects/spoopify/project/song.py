@@ -6,3 +6,4 @@ class Song:
 
     def get_info(self) -> str:
         return f"{self.name} - {self.length}"
+

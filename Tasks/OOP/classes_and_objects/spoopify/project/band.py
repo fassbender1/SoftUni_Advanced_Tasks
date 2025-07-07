@@ -1,6 +1,4 @@
-from project import album
 from project.album import Album
-
 
 class Band:
     albums = []
@@ -14,7 +12,7 @@ class Band:
         return f"Band {self.name} has added their newest album {album.name}."
 
     def remove_album(self, album_name: str) -> str:
-        if album.published:
+        if Album.published:
             return f"Album has been published. It cannot be removed."
         if album_name not in Band.albums:
             return f"Album {album_name} is not found."
@@ -23,7 +21,7 @@ class Band:
 
     def details(self) -> str:
         result = f"Band {self.name}\n"
-        second_part = Album.details()
+        second_part = album.details()
         return result + second_part
 
     # def details(self):

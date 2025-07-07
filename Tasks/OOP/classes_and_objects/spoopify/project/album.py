@@ -1,6 +1,5 @@
 from project.song import Song
 
-
 class Album:
     def __init__(self, name: str, *songs):
         self.name = name
@@ -11,7 +10,7 @@ class Album:
         if self.published:
             return f"Cannot add songs. Album is published."
         if song.single:
-            return f"Cannot add {song.name}. It's a single"
+            return f"Cannot add {song.name}. It's a single."
         if song.name in self.songs:
             return f"Song is already in the album."
         self.songs.append(song.name)
@@ -38,7 +37,7 @@ class Album:
     def details(self):
         result = [f"Album {self.name}"]
         for song in self.songs:
-            result.append(f"== {Song.get_info()}")
+            result.append(f"== {song}")
         return "\n".join(result)
 
 
