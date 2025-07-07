@@ -1,6 +1,7 @@
 from project import album
 from project.album import Album
 
+
 class Band:
     albums = []
     def __init__(self, name: str):
@@ -20,14 +21,14 @@ class Band:
         Band.albums.remove(album_name)
         return f"Album {album_name} has been removed."
 
-    # def details(self) -> str:
-    #     result = f"Band {self.name}\n"
-    #     second_part = self.details()
-    #     return result + second_part
+    def details(self) -> str:
+        result = f"Band {self.name}\n"
+        second_part = Album.details()
+        return result + second_part
 
-    def details(self):
-        result = [f"Band {self.name}"]
-        for album in self.albums:
-            result.append(album.details())
-        return "\n".join(result)
+    # def details(self):
+    #     result = [f"Band {self.name}"]
+    #     for album in self.albums:
+    #         result.append(Album.details())
+    #     return "\n".join(result)
 

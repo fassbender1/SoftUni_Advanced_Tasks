@@ -1,5 +1,6 @@
 from project.song import Song
 
+
 class Album:
     def __init__(self, name: str, *songs):
         self.name = name
@@ -37,7 +38,7 @@ class Album:
     def details(self):
         result = [f"Album {self.name}"]
         for song in self.songs:
-            result.append(f"== {song.get_info()}")
+            result.append(f"== {Song.get_info()}")
         return "\n".join(result)
 
 
