@@ -1,17 +1,14 @@
 class Worker:
-
     def work(self):
         print("I'm working!!")
 
 
 class Manager:
-
     def __init__(self):
         self.worker = None
 
     def set_worker(self, worker):
         assert isinstance(worker, Worker), '`worker` must be of type {}'.format(Worker)
-
         self.worker = worker
 
     def manage(self):
@@ -19,11 +16,8 @@ class Manager:
             self.worker.work()
 
 class SuperWorker:
-
     def work(self):
         print("I work very hard!!!")
-
-
 
 worker = Worker()
 manager = Manager()
