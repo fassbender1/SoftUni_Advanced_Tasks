@@ -1,8 +1,5 @@
 from abc import ABC, abstractmethod
 
-class UnderMaintenanceException(Exception):
-    pass
-
 class NotificationSender(ABC):
     def __init__(self):
         self.is_under_maintenance = False
@@ -10,6 +7,16 @@ class NotificationSender(ABC):
     @abstractmethod
     def send(self, message: str):
         pass
+
+    @property
+    def is_under_maintenance(self):
+        return self.__is_under_maintenance
+
+    @is_under_maintenance.setter
+    def is_under_maintenance(self, value):
+        if not isinstance(value, bool):
+            raise TypeError("The value must be boolean")
+        self.__is_under_maintenance = value
 
 class EmailSender(NotificationSender):
     def send(self, message: str):
@@ -21,20 +28,18 @@ class SMSSender(NotificationSender):
 
 class PushSender(NotificationSender):
     def send(self, message: str):
-        self.is_under_maintenance = True
-        raise UnderMaintenanceException('The Push Sender is under maintenance.')
+        print(f"Sending Push Notification with message: {message}")
 
 class NotificationService:
-    def __init__(self, sender_type: str):
-        if sender_type == "email":
-            self.sender = EmailSender()
-        elif sender_type == "sms":
-            self.sender = SMSSender()
-        elif sender_type == "push":
-            self.sender = PushSender()
+    UNDER_MAINTENANCE = "This service is currently under maintenance."
+    def __init__(self, sender: NotificationSender):
+        self.sender = sender
 
     def notify(self, message: str):
-        self.sender.send(message)
+        if self.sender.is_under_maintenance:
+            print(self.UNDER_MAINTENANCE)
+        else:
+            self.sender.send(message)
 
 email_sender = EmailSender()
 sms_sender = SMSSender()
