@@ -1,9 +1,9 @@
-import copy
 
 class Person:
     def __init__(self, position):
         self.position = position
 
+class FreePerson(Person):
     def walk_north(self, dist):
         self.position[1] += dist
 
@@ -11,10 +11,9 @@ class Person:
         self.position[0] += dist
 
 class Prisoner(Person):
-    PRISON_LOCATION = [3, 3]
+    PRISON_LOCATION = (3, 3)
     def __init__(self):
-        super(Prisoner, self).__init__(copy.copy(self.PRISON_LOCATION))
-        self.is_free = False
+        super(Prisoner, self).__init__(self.PRISON_LOCATION)
 
 prisoner = Prisoner()
 print("The prisoner trying to walk to north by 10 and east by -3.")
