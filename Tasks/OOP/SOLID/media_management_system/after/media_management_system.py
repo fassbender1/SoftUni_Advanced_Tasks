@@ -1,14 +1,21 @@
-class Media:
+from abc import ABC, abstractmethod
+
+class Borrowable(ABC):
+    @abstractmethod
     def borrow(self, user_id):
         pass
 
+class Readable(ABC):
+    @abstractmethod
     def read(self):
         pass
 
+class Listenable(ABC):
+    @abstractmethod
     def listen(self):
         pass
 
-class Book(Media):
+class Book(Borrowable, Readable):
     def __init__(self):
         self.borrowed = False
         self.progress = 0
@@ -24,10 +31,7 @@ class Book(Media):
         else:
             print("Book must be borrowed first.")
 
-    def listen(self):
-        pass
-
-class EBook(Media):
+class EBook(Borrowable, Readable):
     def __init__(self):
         self.borrowed = False
         self.drm_applied = False
@@ -45,10 +49,7 @@ class EBook(Media):
         else:
             print("eBook must be borrowed first.")
 
-    def listen(self):
-        pass
-
-class Audiobook(Media):
+class Audiobook(Borrowable, Listenable):
     def __init__(self):
         self.borrowed = False
         self.progress = 0
@@ -56,9 +57,6 @@ class Audiobook(Media):
     def borrow(self, user_id):
         self.borrowed = True
         print(f"Audiobook borrowed by user {user_id}.")
-
-    def read(self):
-        pass
 
     def listen(self):
         if self.borrowed:
