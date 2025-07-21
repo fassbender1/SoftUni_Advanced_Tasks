@@ -45,6 +45,7 @@ class Order:
         else:
             print('Unsupported payment type.')
 
+
 order_obj = Order([
  ('Apple', 2, 1.0),
  ('Banana', 5, 0.5)
